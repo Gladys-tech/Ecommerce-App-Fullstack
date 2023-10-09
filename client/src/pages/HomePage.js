@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
+import ImageSlider from "../components/Slides/ImageSlider";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+
 
   //get all cat
   const getAllCategory = async () => {
@@ -106,15 +108,20 @@ const HomePage = () => {
       console.log(error);
     }
   };
+  
   return (
     <Layout title={"ALL Products - Best offers "}>
       {/* banner image */}
-      <img
+      <div>
+      <ImageSlider/>
+    </div>
+{/*       
+       <img
         src="/images/banner.png"
         className="banner-img"
         alt="bannerimage"
         width={"100%"}
-      />
+      />  */}
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">

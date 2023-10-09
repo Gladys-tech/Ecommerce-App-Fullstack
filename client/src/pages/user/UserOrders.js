@@ -5,6 +5,7 @@ import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import toast from "react-hot-toast";
+import './Orders.css';
 
 const UserOrders = () => {
   const [orders, setOrders] = useState([]);

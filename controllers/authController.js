@@ -300,9 +300,33 @@ export const orderStatusController = async (req, res) => {
 
 
 // Function to place an order by cash on delivery
+// Update stock quantity and mark product as out of stock if needed
+const updateStockAndMarkOutOfStock = async (productId, quantity) => {
+  try {
+    const product = await Product.findById(productId);
+    if (product) {
+      const newStockQuantity = product.stockQuantity - quantity;
+      console.log(newStockQuantity);
+      if (newStockQuantity <= 0) {
+        product.outOfStock = true;
+      }
+      product.stockQuantity = newStockQuantity;
+      await product.save();
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Function to place an order by cash on delivery
 export const placeOrder = async (req, res) => {
   try {
     const orderData = req.body;
+
+    // Iterate through cart items and update stock quantities
+    for (const cartItem of orderData.cartItems) {
+      await updateStockAndMarkOutOfStock(cartItem.product, cartItem.quantity);
+    }
 
     const order = new ordersModel(orderData);
     await order.save();
@@ -313,6 +337,20 @@ export const placeOrder = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Failed to place the order. Please try again.' });
   }
 };
+
+// export const placeOrder = async (req, res) => {
+//   try {
+//     const orderData = req.body;
+
+//     const order = new ordersModel(orderData);
+//     await order.save();
+
+//     return res.status(201).json({ success: true, message: 'Order placed successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ success: false, message: 'Failed to place the order. Please try again.' });
+//   }
+// };
 
 // Fetch all orders for cash on delivery
 

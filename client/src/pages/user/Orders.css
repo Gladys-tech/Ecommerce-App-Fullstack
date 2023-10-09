@@ -1,0 +1,36 @@
+/* Set max width for images within orders */
+.dashboard .card img {
+    max-width: 100px; /* Adjust the max width as needed */
+    height: auto;
+  }
+  
+  /* Style the actions column */
+  .table-responsive .table tbody td.actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center-align the buttons */
+    padding: 5px; /* Add padding for spacing */
+    width: 100px; /* Adjust the width of the actions column */
+  }
+  
+  /* Style the Cancel button */
+  .table-responsive .table tbody td.actions button {
+    margin-top: 5px; /* Add space between buttons */
+  }
+  
+ /* Add this CSS to your stylesheet */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background-color: #f0f0f0; /* Add a background color to the table header */
+}
+
+table th, table td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd; /* Add a border under each table row */
+}
+/* Styles for screens below 800px */

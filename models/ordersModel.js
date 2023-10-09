@@ -60,6 +60,7 @@ const orderSchema = new mongoose.Schema({
         ref: 'Products', // Assuming you have a Product model
         required: true,
       },
+      // quantity
       quantity: {
         type: Number,
         required: true,

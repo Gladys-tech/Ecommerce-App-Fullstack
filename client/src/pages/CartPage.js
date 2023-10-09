@@ -8,6 +8,10 @@ import { AiFillWarning } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
+// import geocodeAddress from "../utils/geocode";
+// import calculateDistance from "../utils/distance";
+// import calculatePrice from "../utils/pricing";
+
 
 const CartPage = () => {
   const [contact, setContact] = useState("");
@@ -20,33 +24,92 @@ const CartPage = () => {
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // const [userAddress, setUserAddress] = useState(""); // User's address
+  // const [storeAddress, setStoreAddress] = useState(""); // Your store's address
+  // const [weight, setWeight] = useState(0); // Weight of items
+  // const [transportCost, setTransportCost] = useState(0); // Transport cost
+
+  // Function to calculate transport cost based on distance
+// const calculateTransportCost = async (userAddress, storeAddress, cart, weight) => {
+//   try {
+//     // Use geocoding API to convert user address and store address to coordinates
+//     const userCoordinates = await geocodeAddress(userAddress);
+//     const storeCoordinates = await geocodeAddress(storeAddress);
+
+//     // Calculate distance between user and store
+//     const distance = calculateDistance(userCoordinates, storeCoordinates);
+
+//     // Apply pricing rules based on distance and weight
+//     const transportCost = calculatePrice(distance, weight);
+
+//     return transportCost;
+//   } catch (error) {
+//     console.error(error);
+//     return 0; // Handle errors gracefully
+//   }
+// };
+
+
+
+  // In your useEffect
+  // useEffect(() => {
+  //   if (cart.length > 0) {
+  //     // Fetch and calculate transport cost when cart items change
+  //     calculateTransportCost(userAddress, storeAddress, cart, weight)
+  //       .then((cost) => {
+  //         // Update transport cost in your component state
+  //         setTransportCost(cost);
+  //       })
+  //       .catch((error) => {
+  //         // Handle errors
+  //         console.error(error);
+  //       });
+  //   }
+  // }, [userAddress, storeAddress, cart, weight]);
+
   
+  // Initialize your cart data with a default quantity of 1 for each item
+  useEffect(() => {
+    // Initialize quantity to 1 for items in the cart
+    const updatedCart = cart.map((item) => ({
+      ...item,
+      quantity: item.quantity || 1,
+    }));
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  }, []);
 
   // Increase quantity for an item in the cart
   const increaseQuantity = (pid) => {
     const updatedCart = cart.map((item) => {
       if (item._id === pid) {
-        const newQuantity = item.quantity + 1;
-        return { ...item, quantity: Math.min(newQuantity, 50) }; // Limit quantity to 5
+        const newQuantity = (item.quantity || 1) + 1;
+        const stockQuantity = item.stockQuantity;
+  
+        // Limit quantity to the stock quantity
+        return { ...item, quantity: Math.min(newQuantity, stockQuantity) };
       }
       return item;
     });
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-
-  // Decrease quantity for an item in the cart
+  
   const decreaseQuantity = (pid) => {
     const updatedCart = cart.map((item) => {
       if (item._id === pid) {
-        const newQuantity = item.quantity - 1;
-        return { ...item, quantity: Math.max(newQuantity, 1) }; // Minimum quantity is 1
+        const newQuantity = (item.quantity || 1) - 1;
+  
+        // Minimum quantity is 1
+        return { ...item, quantity: Math.max(newQuantity, 1) };
       }
       return item;
     });
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
+  
 
   // Calculate the total price including item quantities
   const totalPrice = () => {
@@ -215,6 +278,12 @@ const CartPage = () => {
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
                     <p>Price : {p.price}</p>
+                    {p.stockQuantity > 0 ? (
+              <p>Quantity Left: {p.stockQuantity - p.quantity}</p>
+            ) : (
+              <p>Out of Stock</p>
+            )}
+
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     {/* Quantity controls */}
@@ -229,6 +298,7 @@ const CartPage = () => {
                       <button
                         className="quantity-button"
                         onClick={() => increaseQuantity(p._id)}
+                        disabled={p.stockQuantity === 0 || p.quantity === p.stockQuantity}
                       >
                         +
                       </button>
@@ -293,7 +363,14 @@ const CartPage = () => {
                 ) : (
                   <>
                     <p>Cash on delivery!</p>
-                    <p>You will pay extra 5000/= for transport</p>
+                     {/* Display transport cost */}
+        {/* <div className="transport-cost">
+          {transportCost > 0 ? (
+            <p>Estimated Transport Cost: {transportCost} YourCurrency</p>
+          ) : (
+            <p>Transport cost calculation error. Please check your address.</p>
+          )}
+        </div> */}
                     <div className="mb-3">
                       <label htmlFor="contact" className="form-label">
                         Contact Information:

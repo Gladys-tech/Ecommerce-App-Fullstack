@@ -13,7 +13,8 @@
   }
   .home-page .card {
     background-color: rgba(128, 128, 128, 0.097);
-    width: 18rem;
+    /* width: 18rem; */
+    margin:10px;
   }
   .home-page .card-name-price {
     display: flex;
@@ -43,7 +44,7 @@
   }
   
   .home-page .card-img-top {
-    height: 300px !important;
+    height: 200px !important;
   }
   /* ==================
   filters
@@ -79,3 +80,38 @@
     font-weight: bold;
     font-size: 20px !important;
   }
+
+/* Media Query for Four Columns at 1000px and Larger */
+@media screen and (min-width: 1000px) {
+  .home-page .card {
+    background-color: rgba(128, 128, 128, 0.097);
+    width: calc(33.3% - 20px); /* Four columns with spacing */
+    margin: 10px; /* Add margin between cards */
+  }
+}
+
+/* Media Query for Two Columns at 500px - 999px */
+@media screen and (min-width: 500px) and (max-width: 999px) {
+  .home-page .card {
+    background-color: rgba(128, 128, 128, 0.097);
+    width: calc(50% - 20px); /* Two columns with spacing */
+    margin: 10px; /* Add margin between cards */
+  }
+  .filters h4 {
+    margin-top: 0px; /* Remove margin-top for the "Filter By Category" section */
+  }
+}
+
+/* Media Query for One Column at Less than 499px */
+@media screen and (max-width: 499px) {
+  .home-page .card {
+    background-color: rgba(128, 128, 128, 0.097);
+    width: calc(100% - 20px); /* One column with spacing */
+    margin: 10px; /* Add margin between cards */
+  }
+}
+@media screen and (max-width: 499px) {
+  .filters h4 {
+    margin-top: 0px; /* Remove margin-top for the "Filter By Category" section */
+  }
+}
