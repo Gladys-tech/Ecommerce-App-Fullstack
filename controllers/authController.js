@@ -36,7 +36,7 @@ export const registerController = async (req, res) => {
     if (exisitingUser) {
       return res.status(200).send({
         success: false,
-        message: "Already Register please login",
+        message: "Already Registered please login",
       });
     }
     //register user
@@ -53,7 +53,7 @@ export const registerController = async (req, res) => {
 
     res.status(201).send({
       success: true,
-      message: "User Register Successfully",
+      message: "User Registered Successfully",
       user,
     });
   } catch (error) {
@@ -300,23 +300,26 @@ export const orderStatusController = async (req, res) => {
 
 
 // Function to place an order by cash on delivery
-// Update stock quantity and mark product as out of stock if needed
 const updateStockAndMarkOutOfStock = async (productId, quantity) => {
   try {
-    const product = await Product.findById(productId);
+    const product = await productModel.findById(productId);
     if (product) {
       const newStockQuantity = product.stockQuantity - quantity;
-      console.log(newStockQuantity);
+
       if (newStockQuantity <= 0) {
         product.outOfStock = true;
       }
+
       product.stockQuantity = newStockQuantity;
       await product.save();
+
+      return product; // Return the updated product object
     }
   } catch (error) {
     console.error(error);
   }
 };
+
 
 // Function to place an order by cash on delivery
 export const placeOrder = async (req, res) => {
@@ -325,7 +328,13 @@ export const placeOrder = async (req, res) => {
 
     // Iterate through cart items and update stock quantities
     for (const cartItem of orderData.cartItems) {
-      await updateStockAndMarkOutOfStock(cartItem.product, cartItem.quantity);
+      const updatedProduct = await updateStockAndMarkOutOfStock(cartItem.product, cartItem.quantity);
+
+      // Update the cart items to reflect the changes in stock quantity
+      const updatedCartItem = orderData.cartItems.find(item => item.product === updatedProduct._id);
+      if (updatedCartItem) {
+        updatedCartItem.product = updatedProduct;
+      }
     }
 
     const order = new ordersModel(orderData);
@@ -337,6 +346,7 @@ export const placeOrder = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Failed to place the order. Please try again.' });
   }
 };
+
 
 // export const placeOrder = async (req, res) => {
 //   try {
@@ -401,8 +411,7 @@ export const getUserOrders = async (req, res) => {
         path: 'cartItems.product',
         select: 'name description price', // Include the fields you need (name and price)
       })
-      // .select('name email address contact cartItems status created_at');
-
+     
     res.json(orders);
   } catch (error) {
     console.error(error);

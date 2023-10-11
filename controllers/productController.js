@@ -143,10 +143,10 @@ export const deleteProductController = async (req, res) => {
   }
 };
 
-//upate producta
+//upate product
 export const updateProductController = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, shipping } =
+    const { name, description, price, category, stockQuantity, shipping } =
       req.fields;
     const { photo } = req.files;
     //alidation

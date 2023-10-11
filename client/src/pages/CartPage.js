@@ -25,30 +25,32 @@ const CartPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const isPlaceOrderDisabled = cart.some((item) => item && item.stockQuantity === 0);
+
   // const [userAddress, setUserAddress] = useState(""); // User's address
   // const [storeAddress, setStoreAddress] = useState(""); // Your store's address
   // const [weight, setWeight] = useState(0); // Weight of items
   // const [transportCost, setTransportCost] = useState(0); // Transport cost
 
   // Function to calculate transport cost based on distance
-// const calculateTransportCost = async (userAddress, storeAddress, cart, weight) => {
-//   try {
-//     // Use geocoding API to convert user address and store address to coordinates
-//     const userCoordinates = await geocodeAddress(userAddress);
-//     const storeCoordinates = await geocodeAddress(storeAddress);
+  // const calculateTransportCost = async (userAddress, storeAddress, cart, weight) => {
+  //   try {
+  //     // Use geocoding API to convert user address and store address to coordinates
+  //     const userCoordinates = await geocodeAddress(userAddress);
+  //     const storeCoordinates = await geocodeAddress(storeAddress);
 
-//     // Calculate distance between user and store
-//     const distance = calculateDistance(userCoordinates, storeCoordinates);
+  //     // Calculate distance between user and store
+  //     const distance = calculateDistance(userCoordinates, storeCoordinates);
 
-//     // Apply pricing rules based on distance and weight
-//     const transportCost = calculatePrice(distance, weight);
+  //     // Apply pricing rules based on distance and weight
+  //     const transportCost = calculatePrice(distance, weight);
 
-//     return transportCost;
-//   } catch (error) {
-//     console.error(error);
-//     return 0; // Handle errors gracefully
-//   }
-// };
+  //     return transportCost;
+  //   } catch (error) {
+  //     console.error(error);
+  //     return 0; // Handle errors gracefully
+  //   }
+  // };
 
 
 
@@ -68,7 +70,7 @@ const CartPage = () => {
   //   }
   // }, [userAddress, storeAddress, cart, weight]);
 
-  
+
   // Initialize your cart data with a default quantity of 1 for each item
   useEffect(() => {
     // Initialize quantity to 1 for items in the cart
@@ -86,7 +88,7 @@ const CartPage = () => {
       if (item._id === pid) {
         const newQuantity = (item.quantity || 1) + 1;
         const stockQuantity = item.stockQuantity;
-  
+
         // Limit quantity to the stock quantity
         return { ...item, quantity: Math.min(newQuantity, stockQuantity) };
       }
@@ -95,12 +97,12 @@ const CartPage = () => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-  
+
   const decreaseQuantity = (pid) => {
     const updatedCart = cart.map((item) => {
       if (item._id === pid) {
         const newQuantity = (item.quantity || 1) - 1;
-  
+
         // Minimum quantity is 1
         return { ...item, quantity: Math.max(newQuantity, 1) };
       }
@@ -109,7 +111,7 @@ const CartPage = () => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-  
+
 
   // Calculate the total price including item quantities
   const totalPrice = () => {
@@ -129,7 +131,7 @@ const CartPage = () => {
 
   // Calculate the total price and quantity including item quantities
   const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
-  
+
   //detele item
   const removeCartItem = (pid) => {
     try {
@@ -189,10 +191,10 @@ const CartPage = () => {
     }
 
     // Check if the contact field is empty
-  if (!contact) {
-    alert('Please enter your contact information');
-    return;
-  }
+    if (!contact) {
+      alert('Please enter your contact information');
+      return;
+    }
 
     setLoading(true);
 
@@ -278,11 +280,13 @@ const CartPage = () => {
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
                     <p>Price : {p.price}</p>
+                    <p>Stock Quantity: {p.stockQuantity}</p>
                     {p.stockQuantity > 0 ? (
-              <p>Quantity Left: {p.stockQuantity - p.quantity}</p>
-            ) : (
-              <p>Out of Stock</p>
-            )}
+                      <p>Quantity Left: {p.stockQuantity - p.quantity}</p>
+                    ) : (
+                      <p>Out of Stock</p>
+                    )}
+
 
                   </div>
                   <div className="col-md-4 cart-remove-btn">
@@ -363,8 +367,8 @@ const CartPage = () => {
                 ) : (
                   <>
                     <p>Cash on delivery!</p>
-                     {/* Display transport cost */}
-        {/* <div className="transport-cost">
+                    {/* Display transport cost */}
+                    {/* <div className="transport-cost">
           {transportCost > 0 ? (
             <p>Estimated Transport Cost: {transportCost} YourCurrency</p>
           ) : (
@@ -386,9 +390,10 @@ const CartPage = () => {
                     </div>
 
                     <button onClick={orderPlaced}
-                     className="btn btn-primary"
-                     >
-                       Place Order
+                      className="btn btn-primary"
+                      disabled={isPlaceOrderDisabled}
+                    >
+                      Place Order
                     </button>
                     {/* <DropIn
                       options={{

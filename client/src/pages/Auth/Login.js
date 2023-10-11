@@ -32,6 +32,7 @@ const Login = () => {
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
+        setPassword("");
       }
     } catch (error) {
       console.log(error);

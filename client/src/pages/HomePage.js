@@ -179,6 +179,9 @@ const HomePage = () => {
                   <p className="card-text ">
                     {p.description.substring(0, 60)}...
                   </p>
+                  {p.stockQuantity === 0 ? (
+                      <span className="text-danger">Out of Stock</span>
+                    ) : null}
                   <div className="card-name-price">
                     <button
                       className="btn btn-info ms-1"

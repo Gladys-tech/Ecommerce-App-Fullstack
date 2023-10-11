@@ -46,6 +46,9 @@ const Products = () => {
                   <div className="card-body">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description}</p>
+                    {p.stockQuantity === 0 ? (
+                      <span className="text-danger">Out of Stock</span>
+                    ) : (<p className="text-success">Stock Bal: {p.stockQuantity} pcs</p>)}
                   </div>
                 </div>
               </Link>
