@@ -75,12 +75,13 @@ const Login = () => {
               onClick={() => {
                 navigate("/forgot-password");
               }}
+              style={{borderRadius:"5px"}}
             >
               Forgot Password
             </button>
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" style={{backgroundColor: "green", border:"none", borderRadius:"5px"}}>
             LOGIN
           </button>
         </form>

@@ -115,13 +115,7 @@ const HomePage = () => {
       <div>
       <ImageSlider/>
     </div>
-{/*       
-       <img
-        src="/images/banner.png"
-        className="banner-img"
-        alt="bannerimage"
-        width={"100%"}
-      />  */}
+
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">

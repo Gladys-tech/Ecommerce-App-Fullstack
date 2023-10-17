@@ -1,52 +1,47 @@
 import React, { useRef } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './ImageSlider.css'; // Create a separate CSS file for styling
 
 function ImageSlider() {
-  const sliderRef = useRef(null);
-
-  const settings = {
-    // Customize your carousel settings here
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 4000,
-    pauseOnHover: true, // Pause autoplay on hover
-  };
-
-  const pauseSlider = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPause();
-    }
-  };
-
   return (
-    <Slider {...settings} ref={sliderRef}>
-      <div className="slide">
-        <div className="slide-content">
-          <img src="/images/banner.png" alt="Image 1" />
-          <div>Content for Image 1</div>
+    <div id="carouselExampleFade" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
+      <div className="carousel-inner">
+        <div className="carousel-item active">
+          <img src="/images/banner.png" alt="Image 1" className="d-block w-100 " />
+          <div className="carousel-caption d-none d-md-block">
+            <h5 style={{ color: 'green' }}>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
+        </div>
+        <div className="carousel-item">
+          <img src="/images/banner1.png" alt="Image 2" className="d-block w-100" />
+          <div className="carousel-caption d-none d-md-block">
+            <h5 style={{ color: 'green' }}>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
+        </div>
+        <div className="carousel-item">
+          <img src="/images/banner2.png" alt="Image 3" className="d-block w-100" />
+          <div className="carousel-caption d-none d-md-block">
+            <h5 style={{ color: 'green' }}>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
         </div>
       </div>
-      <div className="slide">
-        <div className="slide-content">
-          <img src="/images/banner1.png" alt="Image 2" />
-          <div>Content for Image 2</div>
-        </div>
-      </div>
-      <div className="slide">
-        <div className="slide-content">
-          <img src="/images/banner2.png" alt="Image 3" />
-          <div>Content for Image 3</div>
-        </div>
-      </div>
-    </Slider>
+      <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
+      </button>
+      <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
+      </button>
+      <ol className="carousel-indicators custom-indicators">
+        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="0" className="active"></li>
+        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleFade" data-bs-slide-to="2"></li>
+      </ol>
+    </div>
   );
+
+
 }
-
 export default ImageSlider;
-

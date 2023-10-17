@@ -109,7 +109,7 @@ const Register = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" style={{backgroundColor: "green", border:"none", borderRadius:"5px"}}>
             REGISTER
           </button>
         </form>

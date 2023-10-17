@@ -33,7 +33,17 @@ const SearchInput = () => {
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className="btn btn-outline-success" type="submit">
+        <button className="btn btn-outline-success" type="submit"
+        style={{ backgroundColor: "green", color: "white" ,borderRadius:"5px"}}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = "white";
+          e.target.style.color = "green";
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = "green";
+          e.target.style.color = "white";
+        }}
+        >
           Search
         </button>
       </form>

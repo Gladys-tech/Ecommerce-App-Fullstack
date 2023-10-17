@@ -1,0 +1,8 @@
+.category-card {
+    transition: background-color 0.3s; /* Add a smooth color transition effect */
+  }
+  
+  .category-card:hover {
+    background-color: green; /* Set the background color to green on hover */
+  }
+  

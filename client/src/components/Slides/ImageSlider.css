@@ -8,7 +8,12 @@
   .slide img {
     width: 100%;
   }
-  
+  /* Custom CSS for the carousel indicators */
+.custom-indicators li {
+  background-color: green; /* Change the indicator background color to green */
+  color: green; /* Change the indicator text color to white */
+}
+
   
  
   
