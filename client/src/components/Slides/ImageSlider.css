@@ -1,19 +1,182 @@
 
-  .slide-content {
+  /* .slide-content {
     
     width: 100%;
     margin-top: 60px;
   }
-  
-  .slide img {
+   */
+  /* .slide img {
     width: 100%;
-  }
+  } */
   /* Custom CSS for the carousel indicators */
-.custom-indicators li {
-  background-color: green; /* Change the indicator background color to green */
-  color: green; /* Change the indicator text color to white */
+/* .custom-indicators li {
+  background-color: green; /* Change the indicator backgro
+  color: green; 
+} */
+
+ /* slider section */
+.slider_section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  z-index: 2;
+  background-size: cover;
+  background-position: top;
+  color: #ffffff;
 }
 
-  
+.slider_section .row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.slider_section:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 100%;
+  background-image: url("/public/images/slider-bg1.png");
+  background-size: 100% 100%;
+  z-index: 2;
+}
+
+.slider_section:after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  right: 45px;
+  width: 550px;
+  height: 550px;
+  background-image: url("/public/images/slider-bg2.png");
+  background-size: cover;
+  background-position: bottom right;
+  z-index: 1;
+}
+
+.slider_section .detail_box {
+  color: #ffffff;
+}
+
+ .detail_box h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-family: "SnellBT Regular", sans-serif;
+}
+
+.slider_section .detail_box h1 span {
+  font-size: 2.5em;
+}
+
+.slider_section .detail_box a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "SnellBT Regular", sans-serif;
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 75px;
+  font-size: 20px;
+}
+
+.slider_section .detail_box a span {
+  margin-right: 5px;
+}
+
+.slider_section .detail_box a img {
+  width: 65px;
+}
+
+.slider_section .img-box img {
+  width: 100%;
+}
+
+.slider_section #customCarousel1 {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.slider_section .carousel_btn-box {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 3;
+}
+
+.slider_section .carousel_btn-box .carousel-control-prev,
+.slider_section .carousel_btn-box .carousel-control-next {
+  position: unset;
+  width: 55px;
+  height: 55px;
+  font-size: 12px;
+  background-color: #ffffff;
+  opacity: 1;
+  color: green;
+  margin: 2.5px 0;
+}
+
+.slider_section .carousel_btn-box .carousel-control-prev:hover,
+.slider_section .carousel_btn-box .carousel-control-next:hover {
+  color: green;
+} 
  
+@media screen and (max-width: 425px) {
+  /* New styles for smaller screens */
+  .slider_section .detail_box h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .slider_section .detail_box h1 span {
+    font-size: 1.5rem;
+  }
+
+  .slider_section .detail_box a {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .slider_section .detail_box a img {
+    width: 40px;
+  }
+
+  .slider_section .img-box img {
+    max-width: 80%;
+  }
+  .slider_section:before {
+    background-image: url("/public/images/slider-bg1.png");
+    background-size: cover;
+    width: 100%;
+  }
   
+}
+
+
+
+
