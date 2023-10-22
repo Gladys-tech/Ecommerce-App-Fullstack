@@ -1,0 +1,5 @@
+.navbar-no-box-shadow {
+    box-shadow: none !important;
+    border-bottom: none !important;
+  }
+  

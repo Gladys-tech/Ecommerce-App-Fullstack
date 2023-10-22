@@ -145,6 +145,9 @@
 .slider_section .carousel_btn-box .carousel-control-next:hover {
   color: green;
 } 
+
+
+
  
 @media screen and (max-width: 425px) {
   /* New styles for smaller screens */

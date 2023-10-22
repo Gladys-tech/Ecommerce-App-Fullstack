@@ -6,11 +6,13 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+import './Header.css';
 
 const linkStyle = {
   color: "green", // Default color
   
 };
+
 
 
 const Header = () => {
@@ -29,7 +31,8 @@ const Header = () => {
   return (
     <div className="" style={{ marginBottom: 80 }}
     >
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top ">
+      <nav className="navbar navbar-expand-lg  fixed-top navbar-no-box-shadow" 
+      style={{ backgroundColor: "white", }}>
         <div className="container-fluid">
           <button
             className="navbar-toggler"

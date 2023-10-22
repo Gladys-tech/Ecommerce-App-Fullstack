@@ -44,7 +44,7 @@ function ImageSlider() {
 
     // slider section 
       <section className="slider_section ">
-        <div id="customCarousel1" className="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" >
+        <div id="customCarousel1" className="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="2000" >
           <div className="carousel-inner">
             <div className="carousel-item active">
               <div className="container">
@@ -94,7 +94,7 @@ function ImageSlider() {
                   </div>
                   <div className="col-md-5 offset-md-2">
                     <div className="img-box">
-                      <img src="images/slider-img1.png" alt=""/>
+                      <img src="images/slider-img.png" alt=""/>
                     </div>
                   </div>
                 </div>
@@ -121,7 +121,7 @@ function ImageSlider() {
                   </div>
                   <div className="col-md-5 offset-md-2">
                     <div className="img-box">
-                      <img src="images/slider-img2.png" alt=""/>
+                      <img src="images/slider-img.png" alt=""/>
                     </div>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ function ImageSlider() {
         <div className="carousel_btn-box">
           <a className="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
             
-            <span className="sr-only">Previous</span>
+            <span className="sr-only">Prev</span>
           </a>
           <a className="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
             
