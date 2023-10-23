@@ -1,20 +1,4 @@
 
-  /* .slide-content {
-    
-    width: 100%;
-    margin-top: 60px;
-  }
-   */
-  /* .slide img {
-    width: 100%;
-  } */
-  /* Custom CSS for the carousel indicators */
-/* .custom-indicators li {
-  background-color: green; /* Change the indicator backgro
-  color: green; 
-} */
-
- /* slider section */
 .slider_section {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -139,13 +123,13 @@
   opacity: 1;
   color: green;
   margin: 2.5px 0;
+  text-decoration: none !important;
 }
 
 .slider_section .carousel_btn-box .carousel-control-prev:hover,
 .slider_section .carousel_btn-box .carousel-control-next:hover {
   color: green;
 } 
-
 
 
  

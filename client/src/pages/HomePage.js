@@ -38,7 +38,7 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
-  //get products
+  // get products
   const getAllProducts = async () => {
     try {
       setLoading(true);
@@ -50,6 +50,51 @@ const HomePage = () => {
       console.log(error);
     }
   };
+
+
+
+  // Function to get products for the current page
+  const getProductsForPage = async (pageNumber) => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/v1/product/product-list/${pageNumber}`);
+      setLoading(false);
+      return data.products;
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      return [];
+    }
+  };
+
+  // Function to load more products for the next page
+  const loadMore = async () => {
+    const nextPage = page + 1;
+    const newProducts = await getProductsForPage(nextPage);
+    if (newProducts.length > 0) {
+      setProducts(newProducts);
+      setPage(nextPage);
+    }
+  };
+
+  // Function to load products for the previous page
+  const loadPrevious = async () => {
+    if (page > 1) {
+      const previousPage = page - 1;
+      const newProducts = await getProductsForPage(previousPage);
+      if (newProducts.length > 0) {
+        setProducts(newProducts);
+        setPage(previousPage);
+      }
+    }
+  };
+
+  // Initial loading of products
+  useEffect(() => {
+    getProductsForPage(page).then((data) => setProducts(data));
+    getAllCategory();
+    getTotal();
+  }, [page]);
 
   //getTOtal COunt
   const getTotal = async () => {
@@ -65,18 +110,7 @@ const HomePage = () => {
     if (page === 1) return;
     loadMore();
   }, [page]);
-  //load more
-  const loadMore = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
-      setLoading(false);
-      setProducts([...products, ...data?.products]);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+
 
   // filter by cat
   const handleFilter = (value, id) => {
@@ -108,13 +142,13 @@ const HomePage = () => {
       console.log(error);
     }
   };
-  
+
   return (
     <Layout title={"ALL Products - Best offers "}>
       {/* banner image */}
       <div>
-      <ImageSlider/>
-    </div>
+        <ImageSlider />
+      </div>
 
       {/* banner image */}
       <div className="container-fluid row mt-3 home-page">
@@ -151,7 +185,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-9 ">
-          <h1 className="text-center" style={{color: 'green'}}>All Products</h1>
+          <h1 className="text-center" style={{ color: 'green' }}>All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
@@ -174,8 +208,8 @@ const HomePage = () => {
                     {p.description.substring(0, 60)}...
                   </p>
                   {p.stockQuantity === 0 ? (
-                      <span className="text-danger">Out of Stock</span>
-                    ) : null}
+                    <span className="text-danger">Out of Stock</span>
+                  ) : null}
                   <div className="card-name-price">
                     <button
                       className="btn btn-info ms-1"
@@ -208,26 +242,26 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
-            {products && products.length < total && (
+          <div className=" p-3">
+            <div className="pagination-buttons">
               <button
-                className="btn loadmore"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
+                className="btn "
+                onClick={() => loadPrevious()}
+                disabled={page === 1}
+                
               >
-                {loading ? (
-                  "Loading ..."
-                ) : (
-                  <>
-                    {" "}
-                    Loadmore <AiOutlineReload />
-                  </>
-                )}
+                Previous
               </button>
-            )}
+              <button
+                className="btn "
+                onClick={() => loadMore()}
+                disabled={products && products.length >= total}
+              >
+                Loadmore <AiOutlineReload />
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </Layout>

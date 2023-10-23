@@ -55,14 +55,14 @@
 filters
 ============== */
 .filters h4 {
-  margin-top: 100px;
-  color: gray !important;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.337);
+  margin-top: 70px;
+  color: green !important;
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.337); */
 }
 
-.ant-checkbox-wrapper:first-of-type {
+/* .ant-checkbox-wrapper:first-of-type {
   margin-left: 8px;
-}
+} */
 
 .ant-checkbox-wrapper {
   margin: 2px;
@@ -81,11 +81,30 @@ filters
   margin-top: 20px;
 }
 
-.loadmore {
-  color: green;
-  font-weight: bold;
-  font-size: 20px !important;
+.filters {
+  border: none; /* Remove the card border */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  border-radius: 5px; /* Remove border radius to make it square */
+  padding: 5px; /* Add padding inside the card */
+  height: 800px;
 }
+.pagination-buttons {
+  display: flex;
+  justify-content: space-between; /* To add space between the buttons */
+  border-radius: 0;
+  width: 50%;
+  
+}
+.pagination-buttons button{
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 20px !important;
+  font-weight: bold;
+  background-color: green;
+  color: white;
+  margin: 10px;
+}
+
 
 /* Media Query for Four Columns at 1000px and Larger */
 @media screen and (min-width: 1000px) {
