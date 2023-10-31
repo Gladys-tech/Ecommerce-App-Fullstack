@@ -6,7 +6,7 @@ function ImageSlider() {
       <section className="slider_section ">
         <div id="customCarousel1" className="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="2000" >
           <div className="carousel-inner">
-            <div className="carousel-item active">
+            <div className="carousel-item active ">
               <div className="container">
                 <div className="row">
                   <div className="col-md-5">
@@ -72,7 +72,7 @@ function ImageSlider() {
           </div>
           
         </div>
-        <div className="carousel_btn-box">
+        {/* <div className="carousel_btn-box">
           <a className="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
             
             <span className="sr-only ">Prev</span>
@@ -81,7 +81,7 @@ function ImageSlider() {
             
             <span className="sr-only ">Next</span>
           </a>
-        </div>
+        </div> */}
       </section>
        
     

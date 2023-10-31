@@ -411,6 +411,10 @@ export const getUserOrders = async (req, res) => {
         path: 'cartItems.product',
         select: 'name description price', // Include the fields you need (name and price)
       })
+      if (!orders) {
+        // Handle the case where no orders were found
+        return res.status(404).json({ success: false, message: "No orders found" });
+      }
      
     res.json(orders);
   } catch (error) {

@@ -25,6 +25,10 @@
           align-items: center;
 }
 
+.carousel-item.active {
+  border: none; 
+}
+
 .slider_section:before {
   content: "";
   position: absolute;
@@ -35,6 +39,7 @@
   background-image: url("/public/images/slider-bg1.png");
   background-size: 100% 100%;
   z-index: 2;
+  text-decoration: none;
 }
 
 .slider_section:after {
@@ -48,6 +53,7 @@
   background-size: cover;
   background-position: bottom right;
   z-index: 1;
+  text-decoration: none;
 }
 
 .slider_section .detail_box {

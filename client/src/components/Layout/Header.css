@@ -2,4 +2,19 @@
     box-shadow: none !important;
     border-bottom: none !important;
   }
-  
+
+  .navbar-nav .nav-item .nav-link.active {
+    border-bottom: 2px solid green;
+  }
+
+  .custom-container {
+    padding-left: 50px !important; 
+    padding-right: 50px !important;
+  }
+
+  .navbar-nav .nav-link {
+    margin-right: 10px;
+    font-weight: bold !important; 
+    font-size: 18px; 
+    color: green;
+  }

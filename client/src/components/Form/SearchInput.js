@@ -32,9 +32,10 @@ const SearchInput = () => {
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+          style={{border: '2px solid green', borderRadius: '10px'}}
         />
         <button className="btn btn-outline-success" type="submit"
-        style={{ backgroundColor: "green", color: "white" ,borderRadius:"5px"}}
+        style={{ backgroundColor: "green", color: "white" ,borderRadius:"5px", marginRight: '10px'}}
         onMouseEnter={(e) => {
           e.target.style.backgroundColor = "white";
           e.target.style.color = "green";

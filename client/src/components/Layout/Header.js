@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <div className="" style={{ marginBottom: 80 }}
     >
-      <nav className="navbar navbar-expand-lg  fixed-top navbar-no-box-shadow" 
+      <nav className="navbar navbar-expand-lg  fixed-top navbar-no-box-shadow custom-container" 
       style={{ backgroundColor: "white", }}>
         <div className="container-fluid">
           <button
@@ -53,12 +53,8 @@ const Header = () => {
               <SearchInput />
               <li className="nav-item">
                 <NavLink to="/" className="nav-link " 
-                onMouseEnter={(e) => {
-                  e.target.style.color = "green";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = "black";
-                }}
+                activeClassName="active"
+                
                 >
                   Home
                 </NavLink>
@@ -68,22 +64,12 @@ const Header = () => {
                   className="nav-link dropdown-toggle"
                   to={"/categories"}
                   data-bs-toggle="dropdown"
-                  onMouseEnter={(e) => {
-                    e.target.style.color = "green";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.color = "black";
-                  }}
+                  
                 >
                   Categories
                 </Link>
                 <ul className="dropdown-menu" 
-                onMouseEnter={(e) => {
-                  e.target.style.color = "green";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = "black";
-                }}
+                
                 >
                   <li>
                     <Link className="dropdown-item" to={"/categories"}
@@ -92,7 +78,7 @@ const Header = () => {
                       e.target.style.backgroundColor = "green";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.color = "black";
+                      e.target.style.color = "green";
                       e.target.style.backgroundColor = "white";
 
                     }}
@@ -126,24 +112,14 @@ const Header = () => {
                 <>
                   <li className="nav-item">
                     <NavLink to="/register" className="nav-link" 
-                    onMouseEnter={(e) => {
-                      e.target.style.color = "green";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = "black";
-                    }}
+                    
                     >
                       Register
                     </NavLink>
                   </li>
                   <li className="nav-item">
                     <NavLink to="/login" className="nav-link"
-                    onMouseEnter={(e) => {
-                      e.target.style.color = "green";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = "black";
-                    }}
+                  
                     >
                       Login
                     </NavLink>
@@ -157,7 +133,7 @@ const Header = () => {
                       href="#"
                       role="button"
                       data-bs-toggle="dropdown"
-                      style={{ border: "none", color:"#410179" }}
+                      style={{ border: "none", color:"green" }}
                     >
                       {auth?.user?.name}
                     </NavLink>
@@ -168,12 +144,7 @@ const Header = () => {
                             auth?.user?.role === 1 ? "admin" : "user"
                           }`}
                           className="dropdown-item"
-                          onMouseEnter={(e) => {
-                            e.target.style.color = "green";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.color = "black";
-                          }}
+                          
                         >
                           Dashboard
                         </NavLink>
@@ -183,12 +154,7 @@ const Header = () => {
                           onClick={handleLogout}
                           to="/login"
                           className="dropdown-item"
-                          onMouseEnter={(e) => {
-                            e.target.style.color = "green";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.color = "black";
-                          }}
+                          
                         >
                           Logout
                         </NavLink>
@@ -198,7 +164,7 @@ const Header = () => {
                 </>
               )}
               <li className="nav-item">
-                <NavLink to="/cart" className="nav-link" style={linkStyle}>
+                <NavLink to="/cart" className="nav-link">
                   <Badge count={cart?.length} showZero offset={[10, -5]}>
                     Cart
                   </Badge>

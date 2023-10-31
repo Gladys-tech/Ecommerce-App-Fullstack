@@ -55,9 +55,10 @@
 filters
 ============== */
 .filters h4 {
-  margin-top: 70px;
+  margin-top: 20px;
   color: green !important;
-  /* border-bottom: 1px solid rgba(128, 128, 128, 0.337); */
+  border-bottom: 3px solid darkgreen;
+  width: 200px;
 }
 
 /* .ant-checkbox-wrapper:first-of-type {
@@ -83,10 +84,12 @@ filters
 
 .filters {
   border: none; /* Remove the card border */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+  background-color: rgba(128, 128, 128, 0.097);
   border-radius: 5px; /* Remove border radius to make it square */
   padding: 5px; /* Add padding inside the card */
-  height: 800px;
+  height: 720px;
+  margin-top: 75px;
 }
 .pagination-buttons {
   display: flex;

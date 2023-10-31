@@ -323,7 +323,7 @@ const CartPage = () => {
               <p>Total | Personal info | Place Order</p>
               <hr />
               <h4>Total : {totalPrice()} </h4>
-              {/* <h4>Total : {totalPrice.toLocaleString("en-US", { style: "currency", currency: "USD" })} </h4> */}
+              
               <p>Total Quantity: {totalQuantity}</p>
               {auth?.user?.address ? (
                 <>
