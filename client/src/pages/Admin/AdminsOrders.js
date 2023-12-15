@@ -23,6 +23,7 @@ const AdminsOrders = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get("/api/v1/auth/all-orders");
+      console.log(data);
       setOrders(data);
     } catch (error) {
       console.error(error);
@@ -39,7 +40,7 @@ const AdminsOrders = () => {
       await axios.put(`/api/v1/auth/order-status/${orderId}`, {
         status: value,
       });
-  
+
       // Update the status of the order in the orders state
       setOrders((prevOrders) =>
         prevOrders.map((o) =>
@@ -47,14 +48,14 @@ const AdminsOrders = () => {
         )
       );
       // Show a success toast notification
-    toast.success("Status updated successfully!", {
-        duration: 1000, 
+      toast.success("Status updated successfully!", {
+        duration: 1000,
       });
     } catch (error) {
       console.error(error);
     }
   };
-  
+
 
   return (
     <Layout title={"All Orders Data"}>
@@ -101,24 +102,31 @@ const AdminsOrders = () => {
                 </tbody>
               </table>
               <div className="container">
-                {o?.cartItems.map((item) => (
-                  <div className="row mb-2 p-3 card flex-row" key={item._id}>
-                    <div className="col-md-4">
-                      <img
-                        src={`/api/v1/product/product-photo/${item.product._id}`}
-                        className="card-img-top"
-                        alt={item.product.name}
-                        width="100px"
-                        height={"100px"}
-                      />
+                {o?.cartItems
+                  .filter(item => item.product !== null) // Filter out items with null product
+                  .map((item) => (
+                    <div className="row mb-2 p-3 card flex-row" key={item._id}>
+                      <div className="col-md-4">
+                        <img
+                          src={item.product ? `/api/v1/product/product-photo/${item.product._id}` : ''}
+                          className="card-img-top"
+                          alt={item.product ? item.product.name : ''}
+                          width="100px"
+                          height={"100px"}
+                        />
+                      </div>
+                      <div className="col-md-8">
+                        {item.product && (
+                          <>
+                            <p>{item.product.name}</p>
+                            <p>Price: {item.product.price}</p>
+                          </>
+                        )}
+                        <p>Quantity Ordered: {item.quantity}</p>
+                      </div>
                     </div>
-                    <div className="col-md-8">
-                      <p>{item.product.name}</p>
-                      <p>Price: {item.product.price}</p>
-                      <p>Quantity Ordered: {item.quantity}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+
               </div>
             </div>
           ))}

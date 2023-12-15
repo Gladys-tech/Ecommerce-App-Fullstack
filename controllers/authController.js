@@ -1,5 +1,4 @@
 import userModel from "../models/userModel.js";
-import orderModel from "../models/orderModel.js";
 import ordersModel from "../models/ordersModel.js"; 
 import productModel from "../models/productModel.js";
 
@@ -242,61 +241,61 @@ export const updateProfileController = async (req, res) => {
 };
 
 //orders
-export const getOrdersController = async (req, res) => {
-  try {
-    const orders = await orderModel
-      .find({ buyer: req.user._id })
-      .populate("products", "-photo")
-      .populate("buyer", "name");
-    res.json(orders);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error WHile Geting Orders",
-      error,
-    });
-  }
-};
+// export const getOrdersController = async (req, res) => {
+//   try {
+//     const orders = await ordersModel
+//       .find({ buyer: req.user._id })
+//       .populate("products", "-photo")
+//       .populate("buyer", "name");
+//     res.json(orders);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "Error WHile Geting Orders",
+//       error,
+//     });
+//   }
+// };
 //orders
-export const getAllOrdersController = async (req, res) => {
-  try {
-    const orders = await orderModel
-      .find({})
-      .populate("products", "-photo")
-      .populate("buyer", "name")
-      .sort({ createdAt: "-1" });
-    res.json(orders);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error WHile Geting Orders",
-      error,
-    });
-  }
-};
+// export const getAllOrdersController = async (req, res) => {
+//   try {
+//     const orders = await orderModel
+//       .find({})
+//       .populate("products", "-photo")
+//       .populate("buyer", "name")
+//       .sort({ createdAt: "-1" });
+//     res.json(orders);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "Error WHile Geting Orders",
+//       error,
+//     });
+//   }
+// };
 
 //order status
-export const orderStatusController = async (req, res) => {
-  try {
-    const { orderId } = req.params;
-    const { status } = req.body;
-    const orders = await orderModel.findByIdAndUpdate(
-      orderId,
-      { status },
-      { new: true }
-    );
-    res.json(orders);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error While Updateing Order",
-      error,
-    });
-  }
-};
+// export const orderStatusController = async (req, res) => {
+//   try {
+//     const { orderId } = req.params;
+//     const { status } = req.body;
+//     const orders = await orderModel.findByIdAndUpdate(
+//       orderId,
+//       { status },
+//       { new: true }
+//     );
+//     res.json(orders);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "Error While Updateing Order",
+//       error,
+//     });
+//   }
+// };
 
 
 // Function to place an order by cash on delivery
@@ -347,20 +346,6 @@ export const placeOrder = async (req, res) => {
   }
 };
 
-
-// export const placeOrder = async (req, res) => {
-//   try {
-//     const orderData = req.body;
-
-//     const order = new ordersModel(orderData);
-//     await order.save();
-
-//     return res.status(201).json({ success: true, message: 'Order placed successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ success: false, message: 'Failed to place the order. Please try again.' });
-//   }
-// };
 
 // Fetch all orders for cash on delivery
 

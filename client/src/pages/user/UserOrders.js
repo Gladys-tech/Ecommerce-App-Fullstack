@@ -89,25 +89,32 @@ const UserOrders = () => {
                     </tbody>
                   </table>
                   <div className="container">
-                    {o?.cartItems?.map((p, j) => (
-                      <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                        <div className="col-md-4">
-                          <img
-                            src={`/api/v1/product/product-photo/${p.product._id}`}
-                            className="card-img-top"
-                            alt={p.product.name}
-                            width="100px"
-                            height={"100px"}
-                          />
-                        </div>
-                        <div className="col-md-8">
-                          <p>{p.product.name}</p>
-                          <p>{p.product.description}</p>
-                          <p>Price: {p.product.price}</p>
-                          <p>Quantity Ordered: {p.quantity}</p>
-                        </div>
-                      </div>
-                    ))}
+                  {o?.cartItems
+  .filter(item => item.product !== null) // Filter out items with null product
+  .map((item) => (
+    <div className="row mb-2 p-3 card flex-row" key={item._id}>
+      <div className="col-md-4">
+        <img
+          src={item.product ? `/api/v1/product/product-photo/${item.product._id}` : ''}
+          className="card-img-top"
+          alt={item.product ? item.product.name : ''}
+          width="100px"
+          height={"100px"}
+        />
+      </div>
+      <div className="col-md-8">
+        {item.product && (
+          <>
+            <p>{item.product.name}</p>
+            <p>Description: {item.product.description}</p>
+            <p>Price: {item.product.price}</p>
+          </>
+        )}
+        <p>Quantity Ordered: {item.quantity}</p>
+      </div>
+    </div>
+  ))}
+
                   </div>
                 </div>
               );

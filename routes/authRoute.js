@@ -5,9 +5,6 @@ import {
   testController,
   forgotPasswordController,
   updateProfileController,
-  getOrdersController,
-  getAllOrdersController,
-  orderStatusController,
   placeOrder,
   getAllOrders,
   updateOrderStatus,
@@ -51,20 +48,6 @@ router.get("/users", getAllUsers);
 
 // Delete a user by ID
 router.delete("/user/:id", deleteUser);
-
-//orders for payment
-// router.get("/orders", requireSignIn, getOrdersController);
-
-//all orders
-// router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
-
-// order status update
-// router.put(
-//   "/order-status/:orderId",
-//   requireSignIn,
-//   isAdmin,
-//   orderStatusController
-// );
 
 // Place Order Route for cash on delivery
 router.post('/place-order', requireSignIn, placeOrder);
